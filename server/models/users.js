@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 let UserSchema = new Schema({
   //userId: { type: Number, required: true, unique: true},
-  nombre: { type: String, required: true },
+  email: { type: String, required: true },
+  nombre: { type: String, required: false },
   pass: { type: String, required: true}
 
 })
