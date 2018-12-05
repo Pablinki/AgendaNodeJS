@@ -11,10 +11,14 @@ class EventManager {
     obtenerDataInicial() {
         let url = this.urlBase + "/all";
         $.get(url, (response) => {
-            if (typeof(response) == "string")
-                window.location.href = '/';
-            else
+
+            // if (typeof(response) == "string"){
+            if (response == "noLogin"){
+
+                window.location.href = 'index.html';
+            }else
                 this.inicializarCalendario(response);
+                console.log(response);
         });
     }
 
@@ -56,7 +60,8 @@ class EventManager {
 
     eliminarEvento(evento) {
         let eventId = evento._id;
-        $.get('/events/delete/' + eventId, { id: eventId }, (response) => {
+        console.log(eventId);
+        $.post('/events/delete/' + eventId, { id: eventId }, (response) => {
             //alert(parseInt(response.total) > 0 ? "Evento borrado...": "Error al grabar");
             alert(response)
         });
@@ -89,11 +94,13 @@ class EventManager {
                     end: end
                 };
                 $.post(url, ev, (response) => {
+                    //console.log(response);
                     this.inicializarFormulario();
                     ev._id = response.id;
                     $('.calendario').fullCalendar('renderEvent', ev);
                     this.obtenerDataInicial();
-                    alert(parseInt(response) > 0 ? "Registro grabado correctamente...": "Error al grabar");
+                    // alert(parseInt(response.total) > 0 ? "Registro grabado correctamente...": "Error al grabar");
+                    alert(response)
                 });
             } else {
                 alert("Complete los campos obligatorios para el evento");
@@ -133,17 +140,18 @@ class EventManager {
                 center: 'title',
                 right: 'month,agendaWeek,basicDay'
             },
-            defaultDate: '2017-08-01',
+            defaultDate: '2018-11-01',
             navLinks: true,
             editable: true,
             eventLimit: true,
             droppable: true,
             dragRevertDuration: 0,
             timeFormat: 'H:mm',
+            events: eventos,
             eventDrop: (event) => {
                 this.actualizarEvento(event);
             },
-            events: eventos,
+
             eventDragStart: (event, jsEvent) => {
                 $('.delete').find('img').attr('src', "img/trash-open.png");
                 $('.delete').css('background-color', '#a70f19');
@@ -166,8 +174,7 @@ class EventManager {
     }
 }
 
-const Manager = new EventManager();
-
+const Manager = new EventManager()
     $("#logout").click(function(event) {
         $.get("/events/logout" ,()=>{
             window.location.href= "index.html";
