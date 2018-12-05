@@ -4,7 +4,8 @@
   "description": "Proyecto final de Interactuando con BD usuando NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/index.js"
   },
   "keywords": [
     "proyecto",
@@ -16,12 +17,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "es6-promise": "^4.2.5",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "http": "0.0.0",
     "jQuery": "^1.7.4",
     "jquery": "^3.3.1",
-    "mongoose": "^5.3.4"
+    "mongoose": "^5.3.4",
+    "morgan": "^1.9.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

@@ -1,0 +1,2 @@
+{ "_id" : ObjectId("5bd8e6c631bf34c5a621efce"), "email" : "jp@test.com", "nombre" : "Juan Pablo Perez", "pass" : "123" }
+{ "_id" : ObjectId("5bda01350a04365e4887de91"), "email" : "jpp@test.com", "nombre" : "Juan Pedro Padilla", "pass" : "1234", "__v" : 0 }
